@@ -1,0 +1,263 @@
+#1 
+
+Select
+	Distinct State , count(Name) as "Count of Aliens"
+From
+	`aliens of america - location` , `aliens of america - aliens` 
+Where 
+	`aliens of america - location`.loc_id = `aliens of america - aliens`.id 
+group by 
+	State ; 
+
+* Here I Used Distinct Function to retrieves a distinct list of states along with the count of aliens reported in each state. 
+* It joins data from two tables (aliens of america - location and aliens of america - aliens) based on a common ID.
+* groups the results by state, and counts the number of aliens in each state.
+
++-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+#2 
+
+Select
+	Type, COUNT(*) AS ReportCount
+From
+	`alien`.`aliens of america - aliens`
+Group by 
+	Type
+Order by
+	ReportCount DESC
+Limit 5;
+
+* Retrieves the types of aliens reported in the "Aliens of America" dataset along with the count of reports for each type.
+* It groups the results by alien type. 
+* Orders them in descending order based on the count of reports.
+* limits the output to the top 5 alien types with the highest report counts.
+
++-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+
+#3
+
+Select
+	Distinct(gender),(type) 
+From
+	`aliens of america - aliens`
+order by 
+	gender ;
+
+* Here I used Distinct fun to select distinct combinations of gender and alien type from the "Aliens of America" dataset.
+* It orders the results by gender.
+
++-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+
+#4
+
+Select 
+	gender,count(*) as "Total Male And female"
+From
+	alien.`aliens of america - aliens`
+where 
+	gender = "Female" or gender = "Male"
+Group by 
+	gender;
+
+* Using Aggregate function count & Calculates the total count of male and female aliens reported in the "Aliens of America" dataset. 
+* Using where Clause It filters the data to include only records with gender specified as "Female" or "Male". 
+* Groups the results by gender, and counts the occurrences of each gender category.
+
++-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+
+#5
+
+SELECT 
+	count(distinct(occupation)) As "Total Occupations"
+FROM
+	alien.`aliens of america - location`;
+
+* Calculates the total number of distinct occupations reported in the "Aliens of America" dataset.
+* It counts the unique occurrences of the occupation column from the specified table.
+
++-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+
+#6 
+
+select
+	SUBSTRING_INDEX(email, '@', -1) AS domain_name,
+	count(*) as domain_count
+from 
+	`aliens of america - aliens`
+group by
+	domain_name
+order by 
+	domain_count desc 
+Limit 5;
+
+* Used Substring to extract the domain names from email addresses in the "Aliens of America" dataset.
+* It counts the occurrences of each domain name.
+* Group the results by domain name.
+* Order them by the count of occurrences in descending order.
+* Limits the output to the top 5 domain names with the highest counts.
+
++-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+#7
+
+Select 
+	concat(Floor(birth_year / 10)*10 , 's') AS Decade ,
+    Count(*) As Num_individuals
+From
+	`aliens of america - aliens`
+Group by
+	concat(Floor(birth_year / 10)*10 , 's')
+Order by 
+	Decade ;
+
+* Group the individuals in the "Aliens of America" dataset by their birth decade.
+* It calculates the decade of birth for each individual by rounding down their birth year to the nearest decade.
+* Concatenates the result with 's' to represent the decade (e.g., '1960s').
+* Counts the number of individuals in each decade group, and orders the results by decade.
+
+Note : here Floor func is used to roundup the numeric values . and concat is used to combine strings from two different columns ..
+ 
++-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+
+#8
+
+Select 
+	Favorite_food , count(*) AS Frequency
+From
+	`aliens of america - details`
+Group by 
+	favorite_food
+Order by
+	Frequency desc
+Limit 5;
+
+* Retrieves the favorite foods of aliens from the "Aliens of America - Details" dataset along with the frequency of each favorite food.
+* It groups the results by favorite food, orders them by frequency in descending order.
+* limits the output to the top 5 favorite foods with the highest frequencies.
+
++-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+#9 
+
+Select 
+	count(distinct(detail_id)) as 'Toatl Individuals'
+From
+	`aliens of america - details`
+where 
+	feeding_frequency = 'daily' or favorite_food = 'Water legaan'
+
+* Calculates the total number of distinct individuals from the "Aliens of America - Details" dataset who either have a feeding frequency of 'daily' or have a favorite food of 'Water legaan'.
+* It filters the dataset based on the specified conditions.
+* Counts the distinct occurrences of the detail ID to determine the total number of individuals meeting the criteria.
+
++-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+
+#10
+
+Select
+	State , count(*) as Statecount
+From 
+	`aliens of america - location`
+Group by 
+	State
+Order by 
+	Statecount 
+limit 5;
+
+* Retrieves the count of sightings from the "Aliens of America - Location" dataset, grouped by state.
+* It then order the results by the count of sightings in ascending order.
+* limits the output to the top 5 states with the fewest sightings.
+
++-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+	
+#11
+
+Select 
+	distinct(State), count(loc_id) As Num_individuals 
+From 
+	`aliens of america - location`
+Group by
+	State
+Order BY Num_individuals desc
+
+* Retrieves the distinct states from the "Aliens of America - Location" dataset along with the count of unique location IDs (representing individuals) for each state.
+* It groups the results by state, orders them by the count of individuals in descending order, and returns the distinct states with the highest counts of individuals.
+
++-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+
+#12
+
+Select
+	count(loc_id) as Num_Individuals
+From 
+	`aliens of america - location`
+Where 
+	occupation = 'financial analyst' or 'Web Designer I' and state = 'ohio' ;
+
+* Calculates the total number of individuals from the "Aliens of America - Location" dataset who have an occupation of 'financial analyst' or 'Web Designer I' and are located in the state of 'Ohio'.
+* It filters the dataset based on the specified conditions.
+* Counts the occurrences of location IDs to determine the total number of individuals meeting the criteria.
+
++-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+
+#13
+
+Select 
+	aod.favorite_food , count(id) as Food_count
+From 
+	`aliens of america - aliens` as aoa
+Join 
+	`aliens of america - details` as aod on aoa.id=aod.detail_id 
+Join
+	`aliens of america - location` as aol on aoa.id = aol.loc_id
+where 
+	aol.state = 'california'
+Group by
+	aod.favorite_food
+order by
+	 Food_count desc
+Limit 5;
+
+* Retrieves the favorite foods of aliens from the "Aliens of America - Details" dataset who are located in the state of California.
+* It joins three tables: "Aliens of America - Aliens", "Aliens of America - Details", and "Aliens of America - Location", based on their respective IDs(Primary key).
+* The query then counts the occurrences of each favorite food, group the results by favorite food, order them by food count in descending order.
+* limits the output to the top 5 favorite foods with the highest counts.
+
++-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+#14
+
+Select
+	 count(*) as Num_aggressive_individuals 
+From 
+	`aliens of america - details` as aod
+Join
+	`aliens of america - location` as aol on aod.detail_id = aol.loc_id
+Where 
+	aod.aggressive = '1' or '2' and aol.state = 'Texas'
+
+* Calculates the total number of individuals mentioned as aggressive from the "Aliens of America - Details" dataset who are located in the state of Texas.
+* It joins the "Aliens of America - Details" table with the "Aliens of America - Location" table based on their respective IDs.
+* It filters the dataset to include records where the aggression level is either '1' or '2' and the state is 'Texas'. 
+* It counts the occurrences of these individuals meeting the criteria.
+
++-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+
+#15
+
+Select
+	aod.favorite_food,aod.feeding_frequency,count(aol.loc_id) As combo_count
+From 
+	`aliens of america - details` as aod
+Join
+	`aliens of america - location` as aol on aod.detail_id = aol.loc_id
+Where
+	aol.State = 'california' 
+Group by
+	aod.favorite_food,aod.feeding_frequency
+order by
+	combo_count desc
+Limit 3;
+
+* Retrieves the combinations of favorite foods and feeding frequencies of aliens from the "Aliens of America - Details" dataset who are located in the state of California.
+* It joins the "Aliens of America - Details" table with the "Aliens of America - Location" table based on their respective IDs.
+* It filters the dataset to include records where the state is 'California'. 
+* It group the results by combinations of favorite food and feeding frequency and counts the occurrences of each combination.
+* Order them by the combination count in descending order.
+* limits the output to the top 3 combinations with the highest counts.

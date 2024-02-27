@@ -1,0 +1,32 @@
+#Questions :
+
+1) How many aliens were reported in each state?
+
+2) Sum of type of alien species has been reported?
+
+3) Different types of aliens and its gender?
+
+4) How many males and females are represented in the dataset?
+
+5) No of types of occupations were aliens working in ?
+
+6) Top 5 email domain appears most frequently in the dataset?
+
+7) How many individuals were born in each decade(e.g., 1980s, 1990s) ?
+
+8) What are the top 5 most common favorite foods in the dataset?
+
+9) How many individuals report either feeding frequency as “daily” or favorite food as “water legaan”?
+
+10) What are the top 5 most common states represented in the dataset?
+
+11) How many individuals are located in each state?
+
+12) How many individuals have reported their occupation as “financial analyst” or “web designer I” and located in the Ohio?
+
+13) What are the top 5 most common favorite foods among individuals located in California?
+
+14) What are the top 3 most common combinations of favorite food and feeding frequency among individuals located in California?
+
+15)How many individuals in the dataset report being aggressive and are located in texas?
+

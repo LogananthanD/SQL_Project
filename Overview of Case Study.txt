@@ -1,0 +1,27 @@
+Excited to share SQL Challenge related to the Aliens of America .
+
+Challenge overview:- Uncover insights about alien demographics, sightings, and interactions in the United States. The dataset contains information about sightings, encounters, and reported interactions with extraterrestrial beings across different states and time periods.
+
+key SQL Function and clauses utilized :
+In this project, I made use of serval fundamental SQL function and clauses to derive meaningful insights ,
+including:
+
+1) joins in SQL : To combine data from multiple tables.
+
+2) Limit clause :To retrieve a specified number of records .
+
+3) Order by clause: For sorting the data
+
+4) Distinct : To eliminate duplicate rows from the result set.
+
+5) Group by clause : To group data based on a common attribute
+
+6) Aggregate : To perform calculations on sets of values and return a single value as a result.
+
+7) Substring_index : Is a Function that extracts a substring from a string before or after a specified delimiter. 
+
+
+
+Software's used :-
+
+My SQL-for Query building & Analysis

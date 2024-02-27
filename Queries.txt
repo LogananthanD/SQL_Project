@@ -1,0 +1,171 @@
+#1 
+
+Select
+	Distinct State , count(Name) as "Count of Aliens"
+From
+	`aliens of america - location` , `aliens of america - aliens` 
+Where 
+	`aliens of america - location`.loc_id = `aliens of america - aliens`.id 
+group by 
+	State ;
+
+#2
+
+Select
+	Type, COUNT(*) AS ReportCount
+From
+	`alien`.`aliens of america - aliens`
+Group by 
+	Type
+Order by
+	ReportCount DESC
+Limit 5;
+
+#3
+
+Select
+	Distinct(gender),(type) 
+From
+	`aliens of america - aliens`
+order by 
+	gender ;
+
+#4
+
+Select 
+	gender,count(*) as "Total Male And female"
+From
+	alien.`aliens of america - aliens`
+where 
+	gender = "Female" or gender = "Male"
+Group by 
+	gender;
+
+#5
+
+SELECT 
+	count(distinct(occupation)) As "Total Occupations"
+FROM
+	alien.`aliens of america - location`;
+
+#6 
+
+select
+	SUBSTRING_INDEX(email, '@', -1) AS domain_name,
+	count(*) as domain_count
+from 
+	`aliens of america - aliens`
+group by
+	domain_name
+order by 
+	domain_count desc 
+Limit 5;
+
+#7
+
+Select 
+	concat(Floor(birth_year / 10)*10 , 's') AS Decade ,
+    Count(*) As Num_individuals
+From
+	`aliens of america - aliens`
+Group by
+	concat(Floor(birth_year / 10)*10 , 's')
+Order by 
+	Decade ;
+
+#8
+
+Select 
+	Favorite_food , count(*) AS Frequency
+From
+	`aliens of america - details`
+Group by 
+	favorite_food
+Order by
+	Frequency desc
+Limit 5;
+
+#9 
+
+Select 
+	count(distinct(detail_id)) as 'Toatl Individuals'
+From
+	`aliens of america - details`
+where 
+	feeding_frequency = 'daily' or favorite_food = 'Water legaan'
+
+#10
+
+Select
+	State , count(*) as Statecount
+From 
+	`aliens of america - location`
+Group by 
+	State
+Order by 
+	Statecount 
+limit 5;
+	
+#11
+
+Select 
+	distinct(State), count(loc_id) As Num_individuals 
+From 
+	`aliens of america - location`
+Group by
+	State
+Order BY Num_individuals desc
+
+#12
+
+Select
+	count(loc_id) as Num_Individuals
+From 
+	`aliens of america - location`
+Where 
+	occupation = 'financial analyst' or 'Web Designer I' and state = 'ohio' ;
+
+#13
+
+Select 
+	aod.favorite_food , count(id) as Food_count
+From 
+	`aliens of america - aliens` as aoa
+Join 
+	`aliens of america - details` as aod on aoa.id=aod.detail_id 
+Join
+	`aliens of america - location` as aol on aoa.id = aol.loc_id
+where 
+	aol.state = 'california'
+Group by
+	aod.favorite_food
+order by
+	 Food_count desc
+Limit 5;
+
+#14
+
+Select
+	 count(*) as Num_aggressive_individuals 
+From 
+	`aliens of america - details` as aod
+Join
+	`aliens of america - location` as aol on aod.detail_id = aol.loc_id
+Where 
+	aod.aggressive = '1' or '2' and aol.state = 'Texas'
+
+#15
+
+Select
+	aod.favorite_food,aod.feeding_frequency,count(aol.loc_id) As combo_count
+From 
+	`aliens of america - details` as aod
+Join
+	`aliens of america - location` as aol on aod.detail_id = aol.loc_id
+Where
+	aol.State = 'california' 
+Group by
+	aod.favorite_food,aod.feeding_frequency
+order by
+	combo_count desc
+Limit 3;
